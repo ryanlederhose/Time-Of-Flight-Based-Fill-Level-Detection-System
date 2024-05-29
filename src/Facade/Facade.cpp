@@ -47,7 +47,7 @@ void Facade::loop() {
             case 'c': {
                 PointCloud::writePointCloudToFile(*o3dCloud, this->backgroundFilePath);
                 this->debugPrintLn("Taken background image.");
-                this->debugPrintLn("Background Depth: " + std::to_string(this->volumeObj.getBackgroundDepth(this->backgroundFilePath)) + "m");
+                this->debugPrintLn("Background Depth: " + std::to_string(this->volumeObj.getBackgroundDepth(this->backgroundFilePath)) + "mm");
                 open3d::visualization::DrawGeometries({o3dCloud});
                 this->gotBackground = true;
                 break;

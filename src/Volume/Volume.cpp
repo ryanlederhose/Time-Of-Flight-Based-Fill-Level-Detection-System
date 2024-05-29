@@ -142,7 +142,7 @@ double Volume::getBackgroundDepth(std::string backgroundFilePath) {
     backgroundPcd = this->statisticalOutlierFilter(backgroundPcd, 32, 0.5, false);
     backgroundPcd = this->segmentPlane(backgroundPcd, 10, 20, 100, false);
     this->backgroundDepth = this->getMeanZ(backgroundPcd);
-    return this->getMeanZ(backgroundPcd);
+    return this->backgroundDepth;
 }
 
 /**
@@ -154,7 +154,8 @@ double Volume::getBackgroundDepth(std::shared_ptr<open3d::geometry::PointCloud> 
     auto downsampledCloud = this->downsamplePointCloud(backgroundPcd, 5);
     downsampledCloud = this->statisticalOutlierFilter(downsampledCloud, 32, 0.5, false);
     downsampledCloud = this->segmentPlane(downsampledCloud, 10, 20, 100, false);
-    return this->getMeanZ(downsampledCloud);
+    this->backgroundDepth = this->getMeanZ(downsampledCloud);
+    return this->backgroundDepth;
 }
 
 /**
